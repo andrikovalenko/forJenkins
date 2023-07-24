@@ -1,0 +1,17 @@
+---
+- host: all
+
+  tasks:
+    - name: UPDATE
+      apt: update_cache=yes apgrade=yes
+
+    - name: INSTALL NGINX
+      apt: name=nginx state=latest
+
+    - name: START NGINX
+      service:
+      name: nginx
+      state: started
+
+    - name: COPY FILE-SITE
+      copy: src=/key/job/simple_site dest=/var/www/html/index.nginx-debian.html
